@@ -15,7 +15,7 @@ export default {
 </script>
 <!-- creo la search-bar con uno snippet bootstrap -->
 <template>
-  <header class="container d-flex justify-content-between">
+  <header class="container d-flex justify-content-between py-3">
     <div class="boolflix-logo"></div>
     <div class="searchbar">
       <div class="input-group flex-nowrap">
@@ -33,9 +33,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+header {
+  background-color: #000000;
+}
 .boolflix-logo {
   width: 50px;
-  background-color: black;
+  background-color: red;
   height: 40px;
 }
 

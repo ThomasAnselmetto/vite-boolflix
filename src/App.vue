@@ -16,10 +16,11 @@ export default {
   created() {
     axios
       .get(
-        `${store.baseUri}/search/movie?&api_key=${store.apiKey}&query=il+signore+degli+anelli`
+        `${store.baseUri}/search/movie?&api_key=${store.apiKey}&query=lo+strappo`
       )
       .then((response) => {
-        console.log(response.data.results[0].original_title);
+        store.films = response.data.results;
+        console.log(store.films);
       });
   },
 };
@@ -27,6 +28,7 @@ export default {
 
 <template>
   <div class="container">
+    <h1>{{ store.films[0].original_title }}</h1>
     <AppHeader />
   </div>
 </template>
