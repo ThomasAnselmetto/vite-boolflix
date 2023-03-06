@@ -7,6 +7,7 @@ import { store } from "./data/store";
 export default {
   data() {
     return {
+      receivedInput: "",
       store,
     };
   },
@@ -14,6 +15,12 @@ export default {
   components: {
     AppHeader,
     AppMain,
+  },
+  methods: {
+    receivedSearch(term) {
+      this.receivedInput = term;
+      alert(term);
+    },
   },
   created() {
     axios
@@ -38,7 +45,7 @@ export default {
 
 <template>
   <div class="">
-    <AppHeader />
+    <AppHeader @search="receivedSearch" />
 
     <AppMain />
   </div>

@@ -14,7 +14,7 @@ export default {
 
 <template>
   <div class="col my-4">
-    <div class="card" style="width: 18rem">
+    <div class="card" style="">
       <img src="..." class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ titolo }}</h5>
@@ -26,4 +26,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card {
+  height: 20rem;
+}
+</style>
