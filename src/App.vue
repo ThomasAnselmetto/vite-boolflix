@@ -17,22 +17,27 @@ export default {
   },
   methods: {
     fetchSomething(query) {
+      this.fetchmovies(query);
+      this.fetchTvSeries(query);
+    },
+    fetchmovies(query) {
       axios
         .get(
           `${store.baseUri}/search/movie?api_key=${store.apiKey}&query=${query}`
         )
         .then((MoviesResponse) => {
           store.films = MoviesResponse.data.results;
-          console.log(store.films[0]);
         });
+    },
+    fetchTvSeries(query) {
       axios
         .get(
-          `${store.baseUri}/search/tv?api_key=${store.apiKey}&query=${this.receivedInput}`
+          `${store.baseUri}/search/tv?api_key=${store.apiKey}&query=${query}`
         )
         .then((SeriesResponse) => {
           store.series = SeriesResponse.data.results;
-          console.log(store.series[0]);
         });
+      console.log(SeriesResponse);
     },
   },
 };
@@ -51,5 +56,6 @@ export default {
 main {
   background-color: #434343;
   height: 100vh;
+  overflow: auto;
 }
 </style>
