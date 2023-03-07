@@ -14,7 +14,7 @@ export default {
   },
 };
 </script>
-
+<!-- c'era la volonta' di pulire il codice utilizzando una sola Appcard ma nel tentativo di crearla,importarla,dichiararla ed usarla nel template qualcosa e' andato storto -->
 <template>
   <div class="container">
     <h2>Films</h2>

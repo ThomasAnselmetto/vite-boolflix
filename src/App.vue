@@ -15,6 +15,7 @@ export default {
     AppHeader,
     AppMain,
   },
+  // dopo istruzioni di tiziano metto entrambe le fetch in una fetch padre
   methods: {
     fetchSomething(query) {
       this.fetchmovies(query);

@@ -13,6 +13,15 @@ export default {
     image: String,
     overview: String,
   },
+  // sia qui che in films creo la cumputed che ritorna le stelle piene e quelle vuote dividendo il voto ottenuto per 2 e sottraendo poi a 5 questo risultato
+  computed: {
+    fullStars() {
+      return Math.ceil(this.voto / 2);
+    },
+    emptyStars() {
+      return 5 - this.fullStars;
+    },
+  },
   methods: {
     getFlag(country) {
       country = country.toUpperCase();
@@ -39,6 +48,16 @@ export default {
           <p class="card-text">{{ titolo }}</p>
           <p class="card-text">{{ overview }}</p>
           <p class="card-text"><img :src="getFlag(lingua)" alt="flags" /></p>
+          <font-awesome-icon
+            class="full-star"
+            v-for="star in fullStars"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            class="empty-star"
+            v-for="star in emptyStars"
+            icon="fa-regular fa-star"
+          />
         </div>
       </div>
     </div>

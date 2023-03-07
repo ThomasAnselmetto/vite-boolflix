@@ -3,8 +3,8 @@ export default {
   data() {
     return {
       baseImage: "https://image.tmdb.org/t/p/w342",
-      NotLoadImage:
-        "https://image.tmdb.org/t/p/w342/mYLOqiStMxDK3fYZFirgrMt8z5d.jpg",
+      // NotLoadImage:
+      //   "https://image.tmdb.org/t/p/w342/mYLOqiStMxDK3fYZFirgrMt8z5d.jpg",
     };
   },
   props: {
@@ -14,6 +14,14 @@ export default {
     voto: Number,
     image: String,
     overview: String,
+  },
+  computed: {
+    fullStars() {
+      return Math.ceil(this.voto / 2);
+    },
+    emptyStars() {
+      return 5 - this.fullStars;
+    },
   },
   methods: {
     getFlag(country) {
@@ -30,7 +38,7 @@ export default {
 
 <template>
   <div class="col my-4">
-    <div v-if="image != null ? 'card' : NotLoadImage" class="card" style="">
+    <div v-if="image != null" class="card" style="">
       <div class="front">
         <img :src="`${baseImage}${image}`" class="card-img" alt="..." />
       </div>
@@ -40,6 +48,16 @@ export default {
           <p class="card-text">{{ titolo }}</p>
           <p class="card-text">{{ overview }}</p>
           <p class="card-text"><img :src="getFlag(lingua)" alt="flags" /></p>
+          <font-awesome-icon
+            class="full-star"
+            v-for="star in fullStars"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            class="empty-star"
+            v-for="star in emptyStars"
+            icon="fa-regular fa-star"
+          />
         </div>
       </div>
     </div>
