@@ -30,16 +30,16 @@ export default {
   <div class="col my-4">
     <!-- qua vorrei dire che se l'immagine e' uguale a null non stampare nulla ma rimane lo spazio occupato quindi operatore ternario per dare la classe -->
     <div v-if="image != null" class="card" style="">
-      <img
-        :src="`${baseImage}${image}`"
-        class="card-img-top border"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ titoloOriginale }}</h5>
-        <p class="card-text">{{ titolo }}</p>
-        <p class="card-text"><img :src="getFlag(lingua)" alt="flags" /></p>
-        <a href="#" class="btn btn-primary">{{ voto }}</a>
+      <div class="front">
+        <img :src="`${baseImage}${image}`" class="card-img" alt="..." />
+      </div>
+      <div class="back p-3">
+        <div class="card-text">
+          <h5 class="card-title">{{ titoloOriginale }}</h5>
+          <p class="card-text">{{ titolo }}</p>
+          <p class="card-text">{{ overview }}</p>
+          <p class="card-text"><img :src="getFlag(lingua)" alt="flags" /></p>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +47,29 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  min-height: 50rem;
+  height: 28rem;
   border: 5px solid red;
+  &:hover {
+    .front {
+      display: none;
+    }
+    .back {
+      display: block;
+    }
+  }
+}
+
+.front {
+  img {
+    max-height: 28rem;
+  }
+}
+.back {
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 100%;
+  display: none;
+  overflow: auto;
 }
 </style>
