@@ -7,7 +7,6 @@ import { store } from "./data/store";
 export default {
   data() {
     return {
-      receivedInput: "",
       store,
     };
   },
@@ -17,38 +16,40 @@ export default {
     AppMain,
   },
   methods: {
-    receivedSearch(term) {
-      this.receivedInput = term;
-      alert(term);
+    fetchSomething(query) {
+      axios
+        .get(
+          `${store.baseUri}/search/movie?api_key=${store.apiKey}&query=${query}`
+        )
+        .then((MoviesResponse) => {
+          store.films = MoviesResponse.data.results;
+          console.log(store.films[0]);
+        });
+      axios
+        .get(
+          `${store.baseUri}/search/tv?api_key=${store.apiKey}&query=${this.receivedInput}`
+        )
+        .then((SeriesResponse) => {
+          store.series = SeriesResponse.data.results;
+          console.log(store.series[0]);
+        });
     },
-  },
-  created() {
-    axios
-      .get(
-        `${store.baseUri}/search/movie?api_key=${store.apiKey}&query=il+signore+degli+anelli`
-      )
-      .then((MoviesResponse) => {
-        store.films = MoviesResponse.data.results;
-        console.log(store.films[0]);
-      });
-    axios
-      .get(
-        `${store.baseUri}/search/tv?api_key=${store.apiKey}&query=stranger+things`
-      )
-      .then((SeriesResponse) => {
-        store.series = SeriesResponse.data.results;
-        console.log(store.series[0]);
-      });
   },
 };
 </script>
 
 <template>
   <div class="">
-    <AppHeader @search="receivedSearch" />
-
-    <AppMain />
+    <AppHeader @search="fetchSomething" />
+    <main>
+      <AppMain />
+    </main>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+main {
+  background-color: #434343;
+  height: 100vh;
+}
+</style>
