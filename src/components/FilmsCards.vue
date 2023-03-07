@@ -9,12 +9,15 @@ export default {
     lingua: String,
     voto: Number,
     image: String,
+    overview: String,
   },
   methods: {
     getFlag(country) {
       country = country.toUpperCase();
       if (country == "EN") return "https://flagsapi.com/GB/flat/64.png";
       if (country == "ZH") return "https://flagsapi.com/CN/flat/64.png";
+      if (country == "HI") return "https://flagsapi.com/IN/flat/64.png";
+      if (country == "KO") return "https://flagsapi.com/KR/flat/64.png";
       return "https://flagsapi.com/" + country + "/flat/64.png";
     },
   },
@@ -23,7 +26,7 @@ export default {
 
 <template>
   <div class="col my-4">
-    <div class="card" style="">
+    <div v-if="image != null" class="card" style="">
       <img
         :src="`${baseImage}${image}`"
         class="card-img-top border"
@@ -32,6 +35,7 @@ export default {
       <div class="card-body">
         <h5 class="card-title">{{ titoloOriginale }}</h5>
         <p class="card-text">{{ titolo }}</p>
+        <p class="card-text">{{ overview }}</p>
         <p class="card-text"><img :src="getFlag(lingua)" alt="flags" /></p>
         <a href="#" class="btn btn-primary">{{ voto }}</a>
       </div>
@@ -39,4 +43,9 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card {
+  min-height: 50rem;
+  border: 5px solid red;
+}
+</style>

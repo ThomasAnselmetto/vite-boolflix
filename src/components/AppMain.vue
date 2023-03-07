@@ -22,26 +22,32 @@ export default {
 <template>
   <div class="container">
     <h2>Films</h2>
-    <div class="row row-cols-4 movies">
-      <FilmsCards
-        v-for="film in store.films"
-        :titolo="film.title"
-        :titoloOriginale="film.original_title"
-        :lingua="film.original_language"
-        :voto="film.vote_average"
-        :image="film.backdrop_path"
-      />
+    <div v-if="store.films.length" class="conditions">
+      <div class="row row-cols-4 movies">
+        <FilmsCards
+          v-for="film in store.films"
+          :titolo="film.title"
+          :titoloOriginale="film.original_title"
+          :lingua="film.original_language"
+          :voto="film.vote_average"
+          :image="film.poster_path"
+          :overview="film.overview"
+        />
+      </div>
     </div>
     <h2>TV Series</h2>
-    <div class="row row-cols-4 series mt-5">
-      <SeriesCards
-        v-for="serie in store.series"
-        :titolo="serie.name"
-        :titoloOriginale="serie.original_name"
-        :lingua="serie.original_language"
-        :voto="serie.vote_average"
-        :image="serie.backdrop_path"
-      />
+    <div v-if="store.series.length" class="conditions">
+      <div class="row row-cols-4 series mt-5">
+        <SeriesCards
+          v-for="serie in store.series"
+          :titolo="serie.name"
+          :titoloOriginale="serie.original_name"
+          :lingua="serie.original_language"
+          :voto="serie.vote_average"
+          :image="serie.poster_path"
+          :overview="serie.overview"
+        />
+      </div>
     </div>
   </div>
 </template>
