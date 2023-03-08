@@ -8,6 +8,10 @@ export default {
     };
   },
   emits: ["search"],
+
+  resetSearch() {
+    this.search_something = "";
+  },
 };
 </script>
 <!-- creo la search-bar con uno snippet bootstrap -->
